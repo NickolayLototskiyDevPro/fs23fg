@@ -12,7 +12,7 @@ const project = {
     /* implement initialization of the object */
     /* participants - predefined array of participants */
     /* pricing - predefined object (keyvalue collection) of pricing */
-    init(participants, pricing) { 
+    init (participants, pricing) { 
 		if(participants !== undefined) {
 			this.participants=participants;
 		}
@@ -126,8 +126,8 @@ const project = {
     calculateSalary(periodInDays) {
 		let sum = 0; 
     	for (var i=0;i < this.participants.length;i++) {
-    		let meaning = participants [i].seniorityLevel
-    		let hourPrice = pricing[meaning];
+    		let meaning = this.participants [i].seniorityLevel
+    		let hourPrice = this.pricing[meaning];
     		sum += periodInDays * hourPrice*8;
     	}
     	return sum;
@@ -138,7 +138,7 @@ const project = {
             return {
                 getInstance: function() {
                     if (!_project) {
-                      _project = new project ();
+                      _project = function() { return project; }();
                     }
                     return _project;
                 }
